@@ -36,6 +36,25 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        DWKwebview *wkWebview = [[DWKwebview alloc] init];
+        wkWebview.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:wkWebview];
+        
+        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:wkWebview attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:wkWebview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+        NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:wkWebview attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+        NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:wkWebview attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+        [NSLayoutConstraint activateConstraints:@[top, bottom, leading, trailing]];
+        
+        webview = wkWebview;
+    }
+    return self;
+}
+
 - (id _Nullable) getXWebview
 {
     return webview;
